@@ -2,7 +2,7 @@ import { existsSync, mkdir, writeFile } from "fs";
 import fetch from "node-fetch";
 import { promisify } from "util";
 import xlsx from "xlsx";
-import { baseKeys, compoKeys } from "./ciqualKeys.js";
+import { baseKeysMap, compoKeysMap } from "./ciqualKeys.js";
 
 const url =
   "https://ciqual.anses.fr/cms/sites/default/files/inline-files/Table%20Ciqual%202020_FR_2020%2007%2007.xls";
@@ -23,11 +23,11 @@ const url =
   const parsedAlims = alims.map((a) => {
     const parsed = Object.entries(a).reduce((acc, [k, v]) => {
       const newAcc = { ...acc };
-      const baseKey = baseKeys[k as keyof typeof baseKeys];
+      const baseKey = baseKeysMap[k as keyof typeof baseKeysMap];
       if (baseKey) {
         newAcc[baseKey] = v;
       } else {
-        const compKey = compoKeys[k as keyof typeof compoKeys];
+        const compKey = compoKeysMap[k as keyof typeof compoKeysMap];
         if (compKey) {
           newAcc.compo = {
             ...((newAcc.compo as any) || {}),
@@ -50,7 +50,7 @@ const url =
 
   console.log("...creating compo references");
 
-  const compoRefs = Object.entries(compoKeys).reduce((acc, [k, v]) => {
+  const compoRefs = Object.entries(compoKeysMap).reduce((acc, [k, v]) => {
     const newAcc = { ...acc };
     newAcc[v] = k;
     return newAcc;

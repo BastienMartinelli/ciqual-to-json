@@ -1,9 +1,24 @@
-export const baseKeys = {
+/**
+ * Base Ciqual key map
+ * Uncomment to add more
+ */
+export const baseKeysMap = {
   alim_code: "code",
   alim_nom_fr: "nomFr",
+  // alim_grp_code: "grpCode",
+  // alim_ssgrp_code: "ssGrpCode",
+  // alim_ssssgrp_code: "ssssGrpCode",
+  // alim_grp_nom_fr: "grpNomFr",
+  // alim_ssgrp_nom_fr: "ssGrpNomFr",
+  // alim_ssssgrp_nom_fr: "ssssGrpNomFr",
+  // alim_nom_sci: "nomSci",
 };
 
-export const compoKeys = {
+/**
+ * Ciqual compo key maps
+ * Those will fall to the compo property
+ */
+export const compoKeysMap = {
   "Eau (g/100 g)": "0",
   "Protéines, N x facteur de Jones (g/100 g)": "1",
   "Protéines, N x 6.25 (g/100 g)": "2",
